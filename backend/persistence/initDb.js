@@ -1,5 +1,7 @@
-/* mongoose is a object document modelling (ODM) library for MongoDB and Node.js */ 
-/* it is somewhat similar to ORMs like SQLAlchemy, Sequelize, ActiveRecord, etc. */
+/**
+ * mongoose is a object document modelling (ODM) library for MongoDB and Node.js
+ * it is somewhat similar to ORMs like SQLAlchemy, Sequelize, ActiveRecord, etc.
+ */
 import mongoose from "mongoose";
 
 import Restaurant from "./models/restaurant";

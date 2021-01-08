@@ -3,15 +3,19 @@ import { Router } from "express";
 import RestaurantService from "../services/restaurantService";
 import { RestaurantRequestResource } from "../resources/restaurantRequestResource";
 
-/* create a router, which handles requests sent to a given URL */
-/* the router is part of the controller layer (MVC pattern), it is only concerned with receiving requests and sending responses */
-/* keep the controller lean, avoid cluttering with business logic (logic specific to the context of your application) */
+/**
+ * create a router, which handles requests sent to a given URL
+ * the router is part of the controller layer (MVC pattern), it is only concerned with receiving requests and sending responses
+ * keep the controller lean, avoid cluttering with business logic (logic specific to the context of your application)
+ */
 const router = Router();
 
 
-/* handle HTTP GET requests to the root URL, which is /api/restaurants (see server.js), a JSON list of restaurants should be returned */
-/* the specified path ("/") is mapped to an async handler function with 2 parameters. req is the request, res is the response */
-/* the handler is executed when the endpoint is hit */
+/**
+ * handle HTTP GET requests to the root URL, which is /api/restaurants (see server.js), a JSON list of restaurants should be returned
+ * the specified path ("/") is mapped to an async handler function with 2 parameters. req is the request, res is the response
+ * the handler is executed when the endpoint is hit
+ */
 router.get("/", async (_req, res) => {
     /* the service layer handles business logic, delegate the fetching of restaurants to RestaurantService */
     const result = await RestaurantService.getRestaurants();
@@ -28,12 +32,16 @@ router.get("/", async (_req, res) => {
 });
 
 
-/* handle HTTP POST requests to the root URL */
-/* the restaurant specified in the request body should be created, and the created restaurant should be returned */
+/**
+ * handle HTTP POST requests to the root URL
+ * the restaurant specified in the request body should be created, and the created restaurant should be returned
+ */
 router.post("/", async (req, res) => {
-    /* create a RestaurantRequestResource object instead of using the raw req.body */
-    /* data validators and transformations are applied when constructing the resource, */
-    /* this allows downstream code to make safe assumptions about the data */
+    /**
+     * create a RestaurantRequestResource object instead of using the raw req.body
+     * data validators and transformations are applied when constructing the resource,
+     * this allows downstream code to make safe assumptions about the data
+     */
     let restaurant;
     try {
         /* jump into the RestaurantRequestResource definition to see the validators and transformations */
@@ -52,12 +60,15 @@ router.post("/", async (req, res) => {
         return;
     }
 
-    res.status(200).json(result.value);
+    /* HTTP status code 201 means Created */
+    res.status(201).json(result.value);
 });
 
 
-/* handle HTTP PUT requests to the root URL with an id parameter */
-/* the restaurant with the given id should be updated with req.body, the updated restaurant should then be returned */
+/**
+ * handle HTTP PUT requests to the root URL with an id parameter
+ * the restaurant with the given id should be updated with req.body, the updated restaurant should then be returned
+ */
 router.put("/:id", async (req, res) => {
     /* same validations as above */
     let restaurant;
@@ -88,6 +99,7 @@ router.delete("/:id", async (req, res) => {
         return;
     }
 
+    /* HTTP status code 204 means No Content */
     res.status(204).json();
 })
 

@@ -88,13 +88,13 @@ Before starting the tasks, let's try adding an entry to the existing Restaurant 
 
 If we look at `/backend/routes/restaurant.js`, we can see each endpoint defined as its own function.
 
-Reading the comments, if we want to create a restaurant, we will need to trigger the code in `router.post("/", ...)` by making a `POST` request to the *path* `/`.  
+Reading the comments, if we want to create a restaurant, we will need to trigger the code in `router.post("/", ...)` by making a `POST` request to the *path* `/`. Note the path is relative to the root URL that we configured for this router in `server.js`, so the full path is actually `/api/restaurants/`. We can usually omit trailing "/"s in URLs.
 
 If you look in the file `server.js`, you see that `app.listen(5000, ...)` tells us the server is listening for requests on *port* `5000`.
 
-Since we are running this *locally*, we can put all these peices of information together into one url: `http://localhost:5000/` .
+Since we are running this *locally*, we can put all these pieces of information together into one url: `http://localhost:5000/api/restaurants` .
 
-Try downloading [Postman](https://www.postman.com/), and make a `POST` request to `http://localhost:5000/`. You can read the *Tip* section below or the documentation to learn more about Postman.
+Try downloading [Postman](https://www.postman.com/), and make a `POST` request to `http://localhost:5000/api/restaurants`. You can read the *Tip* section below or the documentation to learn more about Postman.
 
 **Hint**: At this point, you may be wondering how will you specify the fields necessary to create a Restaurant. When we look at the code in `restaurant.js`, we see a `RestaurantRequestResource` being created to handle the HTTP request body (`req.body`). Try reading that & the comments associated.
 

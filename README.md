@@ -110,6 +110,7 @@ A single group can contain multiple restaurants, and a single restaurant can be 
 A `RestaurantGroup` has these fields: `id`, `name`, `description`, `restaurantIds`
 
 1. Using the existing code as a template, create REST endpoints for `RestaurantGroup`, supporting Create & Retrieve operations. 
+    
     a. To support _creating_ groups, make an endpoint called `/groups` which handles a `POST` request. It will accept a `name`, `description`, and `restaurantIds` as the request body to create a new Restaurant Group. It will return an `id` which corresponds to the newly created Restaurant Group if successful
 
     **Sample Request Body**

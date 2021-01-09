@@ -27,7 +27,7 @@ $ git clone https://github.com/uwblueprint/bootcamp-mern-rest.git
 $ cd bootcamp-mern-rest
 ```
 
-3. Set up your MongoDB database
+3. Set up your MongoDB database (your local server will connect to this, to persist data)
 
     a. Create a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account and sign-in
 
@@ -37,23 +37,30 @@ $ cd bootcamp-mern-rest
 
     d. Keep all default options on the "Create a cluster" page and click "Create a cluster". Wait 1-3 minutes for your cluster to be provisioned
 
-    e. When your cluster is ready, click "Connect". Select "Use your current IP" and create a database user. **Please remember this password**. Then click "choose a connection method"
+    e. When your cluster is ready, click "Connect"
+    
+    f. Select "Add your current IP" and confirm 
+    
+    g. Create a database user and a password (avoid special characters). **Please remember this password**. Then click "choose a connection method"
 
-    f. Click "Connect your application". Ensure the driver is set for Node.js version 3.6 or later (this should be the default). Then copy the connection string
+    h. Click "Connect your application". Ensure the driver is set for Node.js version 3.6 or later (this should be the default). Then copy the connection string (should look something like `mongodb+srv://...`)
 
-    g. In `/backend/.env.sample`, replace `<your-database-url>` with the connection string. Replace `<password>` and `<dbname>` in the string. The password is what you set earlier, the dbname should be `bootcamp`
+4. Edit your backend code to connect with the MongoDB database
+    a. In `/backend/.env.sample`, replace `<your-database-url>` with the connection string. 
+    
+    b. In the connection string, replace `<password>` with the password you set earlier, and replace `<dbname>` with `bootcamp`
 
-    h. Rename `/backend/.env.sample` to `/backend/.env`
+    c. Rename `/backend/.env.sample` to `/backend/.env`
 
-    i. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 9
+    d. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 9. This will populate your database with some fake data we created upon start up
 
-4. Run the application
+5. Run the application
 ```
 $ docker-compose up --build
 ```
     You should set `SEED_DB` back to `false` now.
 
-5. Go to http://localhost:3000 in your browser. You should see this:
+6. Go to http://localhost:3000 in your browser. You should see this:
 
 ![Complete setup](docs/complete_setup.PNG)
 

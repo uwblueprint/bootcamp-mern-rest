@@ -80,6 +80,24 @@ $ docker-compose up
 
 Keep in mind that both the frontend and backend have hot reload enabled so you will rarely need to restart the application.
 
+## Warm Up
+
+**Skip this if you are familiar with how to make HTTP Requests**
+
+Before starting the tasks, let's try adding an entry to the existing Restaurant table. 
+
+If we look at `/backend/routes/restaurant.js`, we can see each endpoint defined as its own function.
+
+Reading the comments, if we want to create a restaurant, we will need to trigger the code in `router.post("/", ...)` by making a `POST` request to the *path* `/`.  
+
+If you look in the file `server.js`, you see that `app.listen(5000, ...)` tells us the server is listening for requests on *port* `5000`.
+
+Since we are running this *locally*, we can put all these peices of information together into one url: `http://localhost:5000/` .
+
+Try downloading [Postman](https://www.postman.com/), and make a `POST` request to `http://localhost:5000/`. You can read the *Tip* section below or the documentation to learn more about Postman.
+
+**Hint**: At this point, you may be wondering how will you specify the fields necessary to create a Restaurant. When we look at the code in `restaurant.js`, we see a `RestaurantRequestResource` being created to handle the HTTP request body (`req.body`). Try reading that & the comments associated.
+
 ## Your Tasks
 
 Following the starter-code's pattern, complete these tasks:
@@ -91,10 +109,43 @@ A single group can contain multiple restaurants, and a single restaurant can be 
 
 A `RestaurantGroup` has these fields: `id`, `name`, `description`, `restaurantIds`
 
-1. Using the existing code as a template, create REST endpoints for `RestaurantGroup`, supporting C.R.U. (Create, Retrieve, Update) operations. 
-    a. To support _creating_ groups, make an endpoint called `/groups` which handles a `POST` request. It will accept a `name`, `description`, and `restaurantIds` as the request parameters to create a new Restaurant Group. It will return an `id` which corresponds to the newly created Restaurant Group if successful
-    b. To support _retrieving_ a group, make an endpoint called `/groups` which handles a `GET` request. It will accept an `id` and return the Restaurant Group data corresponding to that `id`
+1. Using the existing code as a template, create REST endpoints for `RestaurantGroup`, supporting Create & Retrieve operations. 
+    a. To support _creating_ groups, make an endpoint called `/groups` which handles a `POST` request. It will accept a `name`, `description`, and `restaurantIds` as the request body to create a new Restaurant Group. It will return an `id` which corresponds to the newly created Restaurant Group if successful
+
+    **Sample Request Body**
+    ```
+        {
+            "name" : "example_name",
+            "description" : "example description",
+            "restaurantIds" : [
+                "restaurant_id_one",
+                "restaurant_id_n"
+            ]
+        }
+    ```
+
+    **Successful Response Body**
+    ```
+        {
+            "id" : "example_group_id"
+        }
+    ```
+
+    b. To support _retrieving_ a group, make an endpoint called `/groups/:id` which handles a `GET` request. It will accept an `id` as the request parameter and return the Restaurant Group data corresponding to that `id`
     
+    **Sample Response Body** for `/groups/example_group_id`
+    ```
+        {
+            "id" : "example_group_id"
+            "name" : "example_name",
+            "description" : "example description",
+            "restaurantIds" : [
+                "restaurant_id_one",
+                "restaurant_id_n"
+            ]
+        }
+    ```
+
 2. Display `RestaurantGroup` data in the frontend (try to reuse existing components to save time, don't worry about design and appearance)
 
 3. Modify the API `GET` response so that it includes full restaurant information, not just the ids

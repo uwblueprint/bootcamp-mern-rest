@@ -84,12 +84,30 @@ Keep in mind that both the frontend and backend have hot reload enabled so you w
 
 Following the starter-code's pattern, complete these tasks:
 
-Currently, our restaurant directory maintains a singular list of restaurants. Suppose we now want the ability to create restaurant groups (e.g. "Uni Plaza", "Cafes", "Open Late", etc.). Each group consists of a subset of the restaurants; a restaurant can be part of multiple groups.
+Currently, our restaurant directory maintains a singular list of restaurants. 
+Suppose we now want the ability to create restaurant groups (e.g. "Uni Plaza", "Cafes", "Open Late", etc.). 
 
-A `RestaurantGroup` has these fields: id, name, description, restaurantIds
+A single group can contain multiple restaurants, and a single restaurant can be part of multiple groups.
 
-1. Create REST endpoints for `RestaurantGroup`, supporting CRUD operations
-    * The API responses should include full restaurant information, not just the ids
-    * Deleting a restaurant should result in its removal from all groups it was part of
+A `RestaurantGroup` has these fields: `id`, `name`, `description`, `restaurantIds`
 
+1. Using the existing code as a template, create REST endpoints for `RestaurantGroup`, supporting C.R.U. (Create, Retrieve, Update) operations. 
+    a. To support _creating_ groups, make an endpoint called `/groups` which handles a `POST` request. It will accept a `name`, `description`, and `restaurantIds` as the request parameters to create a new Restaurant Group. It will return an `id` which corresponds to the newly created Restaurant Group if successful
+    b. To support _retrieving_ a group, make an endpoint called `/groups` which handles a `GET` request. It will accept an `id` and return the Restaurant Group data corresponding to that `id`
+    
 2. Display `RestaurantGroup` data in the frontend (try to reuse existing components to save time, don't worry about design and appearance)
+
+3. Modify the API `GET` response so that it includes full restaurant information, not just the ids
+
+### Tip
+
+For some help with debugging your work, you can download [Postman](https://www.postman.com/)! Postman is a tool which allows developers to test endpoints with different requests, and view its responses. This will allow you to write and test the backend code without making any changes to the frontend yet.
+
+And please **ASK FOR HELP**, if you're stuck!
+
+### Extensions
+
+1. To support _updating_ a group, make an endpoint called `/groups` which handles a `PUT` request. It will accept an `id`, `name`, `description`, and `restaurantIds` and edit the properties of the Restaurant Group with the corresponding `id`. It will return the `id` of the Restaurant Group if successful
+
+2. Add an endpoint to support Delete operations
+    * Deleting a restaurant should result in its removal from all the groups it was part of

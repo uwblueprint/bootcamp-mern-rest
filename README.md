@@ -58,7 +58,7 @@ $ cd bootcamp-mern-rest
 ```
 $ docker-compose up --build
 ```
-    You should set `SEED_DB` back to `false` now.
+You should set `SEED_DB` back to `false` now.
 
 6. Go to http://localhost:3000 in your browser. You should see this:
 
@@ -161,5 +161,6 @@ And please **ASK FOR HELP**, if you're stuck!
 
 1. To support _updating_ a group, make an endpoint called `/groups` which handles a `PUT` request. It will accept an `id`, `name`, `description`, and `restaurantIds` and edit the properties of the Restaurant Group with the corresponding `id`. It will return the `id` of the Restaurant Group if successful
 
-2. Add an endpoint to support Delete operations
-    * Deleting a restaurant should result in its removal from all the groups it was part of
+2. Add an endpoint to delete `RestaurantGroups`
+
+3. Modify the restaurant deletion logic so that deleting a restaurant will result in its removal from all the groups that it was part of

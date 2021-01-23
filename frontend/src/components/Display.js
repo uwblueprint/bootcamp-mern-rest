@@ -6,7 +6,7 @@ import './Display.scss';
 /**
  * This is a stateful function component using React Hooks
  */
-const Display = (props) => {
+const Display = ({ loadData, storeData }) => {
   /**
    * if you've used class components before, the useState hook is similar to this code block:
    *
@@ -26,7 +26,7 @@ const Display = (props) => {
    * useEffect is a hook used to apply side effects to the component, it can be used for fetching data.
    * similar to componentDidMount and componentDidUpdate, it runs when the component mounts or updates
    *
-   * the second argument ([props] in this case) is an array of variables that the hook depends on,
+   * the second argument ([loadData] in this case) is an array of variables that the hook depends on,
    * the hook is only activated if one of those variables change
    */
   useEffect(() => {
@@ -45,7 +45,7 @@ const Display = (props) => {
        */
       if (!hasUnmounted) {
         setData(json);
-        props.loadData(json);
+        loadData(json);
       }
     }
 
@@ -55,7 +55,7 @@ const Display = (props) => {
     return () => {
       hasUnmounted = true;
     };
-  }, [props]);
+  }, [loadData]);
 
 
   return (
@@ -63,7 +63,7 @@ const Display = (props) => {
       <h2>Local Data Handling</h2>
       <BasicTable data={data} />
       <h2>Global Data Handling</h2>
-      <BasicTable  data={props.storeData} />
+      <BasicTable  data={storeData} />
     </div>
   );
 }

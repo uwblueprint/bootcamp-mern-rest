@@ -31,10 +31,10 @@ $ cd bootcamp-mern-rest
 
     a. Create a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account and sign-in
 
-    b. Create a new project called blueprint-bootcamp
+    b. Create a new project called blueprint-bootcamp (you may need to create an organization first)
 
-    c. Click "Build a Cluster" > "Shared Clusters" (the free option) > "Create a cluster"
-
+    c. Click "Build a Database" > "Shared" (the free option) > "Create"
+    
     d. Keep all default options on the "Create a cluster" page and click "Create a cluster". Wait 1-3 minutes for your cluster to be provisioned
 
     e. When your cluster is ready, click "Connect"

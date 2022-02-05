@@ -103,12 +103,4 @@ router.delete("/:id", async (req, res) => {
     res.status(204).json();
 })
 
-router.get("/groups/:id", async (req, res) =>  {
-    const rawResult = await RestaurantService.retriveRestaurantGroup(req.params.id);
-
-    const result = await RestaurantService.ProcessedRestaurantGroup(rawResult);
-
-    res.status(200).json(result.value);
-})
-
 export default router;

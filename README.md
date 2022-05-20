@@ -35,24 +35,26 @@ $ cd bootcamp-mern-rest
 
     c. Click "Build a Database" > "Shared" (the free option) > "Create"
     
-    d. Keep all default options on the "Create a cluster" page and click "Create a cluster". Wait 1-3 minutes for your cluster to be provisioned
+    d. Keep all default options on the "Create a cluster" page and click "Create Cluster". Wait 3-5 minutes for your cluster to be provisioned
 
-    e. When your cluster is ready, click "Connect"
-    
-    f. Select "Add your current IP" and confirm 
-    
-    g. Create a database user and a password (avoid special characters). **Please remember this password**. Then click "choose a connection method"
+    e. Create a database user and a password (avoid special characters). **Please remember this password**. Click "Create User".
 
-    h. Click "Connect your application". Ensure the driver is set for Node.js version 3.6 or later (this should be the default). Then copy the connection string (should look something like `mongodb+srv://...`)
+    f. Select to connect from "My Local Environment"
+    
+    g. Select "Add your current IP" and confirm. Then hit "Finish and Close".
+
+    h. When your cluster is ready, click "Connect".
+
+    i. Click "Connect your application". Ensure the driver is set for Node.js version 3.6 or later (this should be the default). Then copy the connection string (should look something like `mongodb+srv://...`)
 
 4. Edit your backend code to connect with the MongoDB database
     a. In `/backend/.env.sample`, replace `<your-database-url>` with the connection string. 
     
-    b. In the connection string, replace `<password>` with the password you set earlier, and replace `<dbname>` with `bootcamp`
+    b. In the connection string, replace `<password>` with the password you set earlier. The username and database name should be auto filled.
 
     c. Rename `/backend/.env.sample` to `/backend/.env`
 
-    d. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 9. This will populate your database with some fake data we created upon start up
+    d. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 11. This will populate your database with some fake data we created upon start up
 
 5. Run the application
 ```

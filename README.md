@@ -27,32 +27,15 @@ $ git clone https://github.com/uwblueprint/bootcamp-mern-rest.git
 $ cd bootcamp-mern-rest
 ```
 
-3. Set up your MongoDB database (your local server will connect to this, to persist data)
+3. Edit your backend code to connect with the MongoDB database
 
-    a. Create a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account and sign-in
+    a. In `/backend/.env.sample`, replace `<username>` with any username.
 
-    b. Create a new project called blueprint-bootcamp (you may need to create an organization first)
+    b. In the connection string, replace `<password>` with any password.
 
-    c. Click "Build a Database" > "Shared" (the free option) > "Create"
-    
-    d. Keep all default options on the "Create a cluster" page and click "Create a cluster". Wait 1-3 minutes for your cluster to be provisioned
+    c. Rename `/backend/.env.sample` to `/backend/.env`.
 
-    e. When your cluster is ready, click "Connect"
-    
-    f. Select "Add your current IP" and confirm 
-    
-    g. Create a database user and a password (avoid special characters). **Please remember this password**. Then click "choose a connection method"
-
-    h. Click "Connect your application". Ensure the driver is set for Node.js version 3.6 or later (this should be the default). Then copy the connection string (should look something like `mongodb+srv://...`)
-
-4. Edit your backend code to connect with the MongoDB database
-    a. In `/backend/.env.sample`, replace `<your-database-url>` with the connection string. 
-    
-    b. In the connection string, replace `<password>` with the password you set earlier, and replace `<dbname>` with `bootcamp`
-
-    c. Rename `/backend/.env.sample` to `/backend/.env`
-
-    d. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 9. This will populate your database with some fake data we created upon start up
+    d. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 9. This will populate your database with some fake data we created upon start up.
 
 5. Run the application
 ```
@@ -84,7 +67,7 @@ Keep in mind that both the frontend and backend have hot reload enabled so you w
 
 **Skip this if you are familiar with how to make HTTP Requests**
 
-Before starting the tasks, let's try adding an entry to the existing Restaurant table. 
+Before starting the tasks, let's try adding an entry to the existing Restaurant table.
 
 If we look at `/backend/routes/restaurant.js`, we can see each endpoint defined as its own function.
 
@@ -102,15 +85,15 @@ Try downloading [Postman](https://www.postman.com/), and make a `POST` request t
 
 Following the starter-code's pattern, complete these tasks:
 
-Currently, our restaurant directory maintains a singular list of restaurants. 
-Suppose we now want the ability to create restaurant groups (e.g. "Uni Plaza", "Cafes", "Open Late", etc.). 
+Currently, our restaurant directory maintains a singular list of restaurants.
+Suppose we now want the ability to create restaurant groups (e.g. "Uni Plaza", "Cafes", "Open Late", etc.).
 
 A single group can contain multiple restaurants, and a single restaurant can be part of multiple groups.
 
 A `RestaurantGroup` has these fields: `id`, `name`, `description`, `restaurantIds`
 
-1. Using the existing code as a template, create REST endpoints for `RestaurantGroup`, supporting Create & Retrieve operations. 
-    
+1. Using the existing code as a template, create REST endpoints for `RestaurantGroup`, supporting Create & Retrieve operations.
+
     a. To support _creating_ groups, make an endpoint called `/groups` which handles a `POST` request. It will accept a `name`, `description`, and `restaurantIds` as the request body to create a new Restaurant Group. It will return an `id` which corresponds to the newly created Restaurant Group if successful
 
     **Sample Request Body**
@@ -133,7 +116,7 @@ A `RestaurantGroup` has these fields: `id`, `name`, `description`, `restaurantId
     ```
 
     b. To support _retrieving_ a group, make an endpoint called `/groups/:id` which handles a `GET` request. It will accept an `id` as the request parameter and return the Restaurant Group data corresponding to that `id`
-    
+
     **Sample Response Body** for `/groups/example_group_id`
     ```
         {

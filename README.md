@@ -27,15 +27,36 @@ $ git clone https://github.com/uwblueprint/bootcamp-mern-rest.git
 $ cd bootcamp-mern-rest
 ```
 
-3. Edit your backend code to connect with the MongoDB database
+3. Set up your MongoDB database (your local server will connect to this, to persist data)
 
-    a. In `/backend/.env.sample`, replace `<username>` with any username.
+    a. Create a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) account and sign-in
 
-    b. In the connection string, replace `<password>` with any password.
+    b. Create a new project called blueprint-bootcamp (you may need to create an organization first)
 
-    c. Rename `/backend/.env.sample` to `/backend/.env`.
+    c. Click "Build a Database" > "Shared" (the free option) > "Create"
 
-    d. In `backend/persistence/initDb.js`, set `SEED_DB` to `true` on line 9. This will populate your database with some fake data we created upon start up.
+    d. Keep all default options on the "Create a cluster" page and click "Create a cluster". Wait 1-3 minutes for your cluster to be provisioned
+
+    e. When your cluster is ready, click "Connect"
+
+    f. Select "Add your current IP" and confirm 
+
+    g. Create a database user and a password (avoid special characters). **Please remember this password**. Then click "choose a connection method"
+
+    h. Click "Connect your application". Ensure the driver is set for Node.js version 3.6 or later (this should be the default). Then copy the connection string (should look something like `mongodb+srv://...`)
+
+4. Edit your backend code to connect with the MongoDB database
+    a. In `/backend/.env.sample`, replace `<your-database-url>` with the connection string. 
+
+    b. In the connection string, replace `<username>` with the username set ealier and replace `<password>` with the password you set earlier as well.
+
+    c. In the connection string, just after `.... mongodb.net/`, insert `bootcamp` just before `?retryWrites=true&w=majority`. So the end of the string should look like this: `.. mongodb.net/bootcamp?retryWrites=true&w=majority`.
+
+    d. Also change `MONGO_INITDB_ROOT_USERNAME` and `MONGO_INITDB_ROOT_PASSWORD` to the correct values set earlier.
+
+    d. Rename `/backend/.env.sample` to `/backend/.env`
+
+    e. In `backend/persistence/initDb.js`, set `SEED_DB` to `true`. This will populate your database with some fake data we created upon start up
 
 5. Run the application
 ```
